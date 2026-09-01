@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>متجر منتجات التغذية - Nutrition Store</title>
+    <!-- Google Fonts: Tajawal & Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -14,49 +18,176 @@
                 <ul>
                     <li><a href="#home">الرئيسية</a></li>
                     <li><a href="#products">المنتجات</a></li>
-                    <li><a href="#about">عننا</a></li>
+                    <li><a href="#about">عن المتجر</a></li>
                     <li><a href="#contact">اتصل بنا</a></li>
                 </ul>
             </nav>
-            <div class="cart-icon">🛒 <span class="cart-count">0</span></div>
+            <div class="cart-icon" id="cartButton" title="عرض سلة المشتريات">
+                🛒 <span class="cart-count">0</span>
+            </div>
         </div>
     </header>
 
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>أفضل منتجات التغذية الصحية</h1>
-            <p>اختر من مجموعة واسعة من المكملات والمنتجات الغذائية الطبيعية</p>
-            <button class="btn-primary" onclick="scrollToProducts()">تسوق الآن</button>
+            <span class="hero-badge">⚡ جودة عالمية ومضمونة 100%</span>
+            <h1>أفضل منتجات التغذية والمكملات الصحية</h1>
+            <p>اختر من بين تشكيلة واسعة ومختارة بعناية من البروتينات، الفيتامينات، والمكملات الطبيعية لتعزيز صحتك وأدائك البدني.</p>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="scrollToProducts()">تسوق الآن 🛍️</button>
+                <a href="#about" class="btn-secondary">تعرف علينا</a>
+            </div>
         </div>
     </section>
 
     <section id="products" class="products">
         <div class="container">
-            <h2>منتجاتنا</h2>
-            <div class="products-grid" id="productsContainer"></div>
+            <div class="section-header">
+                <h2>منتجاتنا المميزة</h2>
+                <p class="section-subtitle">اكتشف أفضل المكملات الغذائية لدعم أهدافك الصحية والرياضية</p>
+            </div>
+
+            <!-- Search & Filter Controls -->
+            <div class="search-filter">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    class="search-input" 
+                    placeholder="🔍 ابحث عن منتج بالاسم..." 
+                    oninput="handleSearch(this.value)"
+                >
+                <select id="categorySelect" class="category-select" onchange="handleCategoryChange(this.value)">
+                    <option value="all">جميع الفئات</option>
+                    <option value="protein">بروتينات وبناء العضلات</option>
+                    <option value="vitamins">فيتامينات وصحة عامة</option>
+                    <option value="performance">أداء رياضي وطاقة</option>
+                    <option value="organic">منتجات عضوية وطبيعية</option>
+                </select>
+            </div>
+
+            <div class="products-grid" id="productsContainer">
+                <!-- Products will be rendered here via script.js -->
+            </div>
         </div>
     </section>
 
     <section id="about" class="about">
         <div class="container">
-            <h2>عن متجرنا</h2>
-            <p>نقدم أفضل منتجات التغذية والمكملات الغذائية من أشهر العلامات التجارية العالمية. جميع منتجاتنا مفحوصة ومعتمدة وتضمن أعلى معايير الجودة.</p>
+            <div class="about-content">
+                <h2>عن متجرنا</h2>
+                <div class="about-text">
+                    <p>نحن في <strong>متجر التغذية</strong> ملتزمون بتقديم أعلى مستويات الجودة من المنتجات الغذائية والمكملات الرياضية المعتمدة عالمياً. نسعى لمساعدتك على تحقيق أهدافك البدنية والوصول لنمط حياة صحي ومثالي بكل ثقة وأمان.</p>
+                </div>
+                <div class="about-features">
+                    <div class="feature">
+                        <span class="feature-icon">🛡️</span>
+                        <span>منتجات أصلية ومضمونة 100%</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🚀</span>
+                        <span>شحن سريع لجميع المدن</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">💳</span>
+                        <span>دفع آمن عند الاستلام أو إلكترونياً</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">💬</span>
+                        <span>استشارات مجانية وخدمة 24/7</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="contact" class="contact">
         <div class="container">
             <h2>اتصل بنا</h2>
-            <p>البريد الإلكتروني: info@nutrition-store.com</p>
-            <p>الهاتف: +966 50 123 4567</p>
-            <p>العنوان: الرياض، المملكة العربية السعودية</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="contact-icon">📧</span>
+                    <p><strong>البريد الإلكتروني:</strong></p>
+                    <p>support@nutrition-store.com</p>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📞</span>
+                    <p><strong>الهاتف / واتساب:</strong></p>
+                    <p dir="ltr">+966 50 123 4567</p>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📍</span>
+                    <p><strong>الموقع:</strong></p>
+                    <p>الرياض، المملكة العربية السعودية</p>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- Cart Modal Drawer -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>🛒 سلة المشتريات (<span class="cart-count">0</span>)</h3>
+                <span class="close" id="closeCartBtn" title="إغلاق">&times;</span>
+            </div>
+            <div class="cart-items" id="cartItemsContainer">
+                <!-- Cart items rendered dynamically -->
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>المجموع الإجمالي:</span>
+                    <span id="cartTotalPrice">0 ريال</span>
+                </div>
+                <button class="btn-checkout" onclick="openCheckout()">إتمام الطلب الآن ✅</button>
+                <button class="btn-clear-cart" onclick="clearCart()">تفريغ السلة 🗑️</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="checkout-modal-overlay" id="checkoutModal">
+        <div class="checkout-modal-card">
+            <div class="checkout-modal-header">
+                <h3>📦 تأكيد وإتمام الطلب</h3>
+                <span class="close" onclick="closeCheckout()">&times;</span>
+            </div>
+            <form id="checkoutForm" onsubmit="handleCheckoutSubmit(event)">
+                <div class="form-group">
+                    <label for="customerName">الاسم بالكامل:</label>
+                    <input type="text" id="customerName" required placeholder="أدخل اسمك الكريم">
+                </div>
+                <div class="form-group">
+                    <label for="customerPhone">رقم الجوال:</label>
+                    <input type="tel" id="customerPhone" required placeholder="05xxxxxxxx">
+                </div>
+                <div class="form-group">
+                    <label for="customerAddress">عنوان التوصيل والمدينة:</label>
+                    <textarea id="customerAddress" required placeholder="مثال: الرياض - حي الملقا - شارع ..."></textarea>
+                </div>
+                <div class="checkout-summary">
+                    <div class="summary-row">
+                        <span>إجمالي المنتجات:</span>
+                        <strong id="checkoutTotalAmount">0 ريال</strong>
+                    </div>
+                    <div class="summary-row">
+                        <span>رسوم الشحن:</span>
+                        <span class="free-shipping">مجاني 🎉</span>
+                    </div>
+                </div>
+                <button type="submit" class="btn-confirm-order">تأكيد الطلب والدفع عند الاستلام 🚚</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notifications Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
     <footer>
-        <p>&copy; 2024 متجر منتجات التغذية. جميع الحقوق محفوظة.</p>
+        <div class="container">
+            <p>&copy; 2024 متجر منتجات التغذية الصحية. جميع الحقوق محفوظة.</p>
+        </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
